@@ -1,0 +1,2 @@
+# NerkoTekst
+Pierwiastki w zdaniu
