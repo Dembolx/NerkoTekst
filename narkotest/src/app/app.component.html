@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="header">
+    <h1>Chemical Elements Parser</h1>
+    <p>
+      Wprowadź tekst, a algorytm podzieli go na pierwiastki chemiczne jak
+      układankę!
+    </p>
+  </div>
+
+  <div class="input-section">
+    <div class="input-group">
+      <textarea
+        [(ngModel)]="inputText"
+        placeholder="Wprowadź tekst do podziału na pierwiastki (np. 'alchemicy' → Al-C-He-I-Y)"
+        class="input-field"
+        rows="3"
+      >
+      </textarea>
+      <div class="button-group">
+        <button
+          (click)="parseText()"
+          class="parse-btn"
+          [disabled]="!inputText.trim()"
+        >
+          Analizuj
+        </button>
+        <button (click)="clearInput()" class="clear-btn">Wyczyść</button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="results-section"
+    *ngIf="parsedElements.length > 0 || unparsedText"
+  >
+    <div class="elements-grid" *ngIf="parsedElements.length > 0">
+      <h2>Znalezione pierwiastki chemiczne:</h2>
+      <div class="grid">
+        <div class="element-card" *ngFor="let element of parsedElements">
+          <div class="element-symbol">{{ element.symbol }}</div>
+          <div class="element-name">{{ element.name }}</div>
+          <div class="element-mass">{{ element.mass }} u</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unparsed-section" *ngIf="unparsedText">
+      <h3>Nierozpoznany tekst:</h3>
+      <div class="unparsed-text">{{ unparsedText }}</div>
+    </div>
+  </div>
+</div>
